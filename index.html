@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!--PAGE-->
+<title>Madness Latino</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&display=swap">
+<style>
+/* Layout: a gig poster that scrolls. Flat colour blocks taken from the brand's own posters (hot pink, acid yellow), DJ video behind the title, photography everywhere else. One committed look. */
+:root{
+  color-scheme:dark;
+  --ink:#140810; --pink:#ff2e7e; --yellow:#eaff3b; --paper:#fff4ea; --dim:#c9b9c4;
+  --display:"Anton","Haettenschweiler","Arial Narrow",Impact,sans-serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --gl:max(20px,env(safe-area-inset-left,0px)); --gr:max(20px,env(safe-area-inset-right,0px));
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--body);font-size:16px;line-height:1.5}
+a{color:inherit}
+img{max-width:100%;display:block}
+.in{padding-left:var(--gl);padding-right:var(--gr);max-width:1320px;margin-inline:auto}
+.disp{font-family:var(--display);text-transform:uppercase;font-weight:400;line-height:.88;letter-spacing:.005em;margin:0}
+.label{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+:focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+
+/* hero */
+.hero{position:relative;min-height:min(92vh,900px);display:flex;flex-direction:column;overflow:hidden;background:var(--ink)}
+.screens{position:absolute;inset:0;display:grid;grid-template-columns:1fr;gap:3px}
+.screens video{width:100%;height:100%;object-fit:cover;display:block;background:var(--ink)}
+.screens video+video{display:none}
+@media (min-width:820px){.screens{grid-template-columns:repeat(3,1fr)}.screens video+video{display:block}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,8,16,.55) 0%,rgba(20,8,16,.15) 35%,rgba(20,8,16,.88) 100%);pointer-events:none}
+.nav,.hero-body{position:relative;z-index:2}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:18px;flex-wrap:wrap}
+.nav b{font-family:var(--display);font-weight:400;font-size:22px;text-transform:uppercase;letter-spacing:.02em}
+.nav b i{font-style:normal;color:var(--yellow)}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.nav a{text-decoration:none}
+.nav a:hover{color:var(--yellow)}
+.hero-body{margin-top:auto;padding-block:40px 36px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px}
+h1.disp{font-size:clamp(84px,19vw,270px)}
+h1 span{display:block}
+h1 .l2{color:var(--yellow)}
+.tag{font-size:clamp(16px,2vw,21px);font-weight:500;margin:18px 0 0;max-width:30ch}
+.sticker{background:var(--pink);color:var(--ink);padding:16px 20px 18px;transform:rotate(-3deg);text-decoration:none;display:block;min-width:230px}
+.sticker .disp{font-size:34px;line-height:1}
+.sticker .label{display:block;margin-bottom:8px}
+.sticker:hover{background:var(--yellow)}
+
+/* cities strip */
+.strip{background:var(--yellow);color:var(--ink);overflow:hidden;white-space:nowrap;padding-block:10px}
+.strip div{display:inline-block;font-family:var(--display);text-transform:uppercase;font-size:26px;letter-spacing:.03em}
+.strip span{margin-inline:18px}
+@media (prefers-reduced-motion:no-preference){.strip div{animation:run 28s linear infinite}@keyframes run{to{transform:translateX(-50%)}}}
+
+/* dates */
+.dates{background:var(--pink);color:var(--ink);padding-block:64px 72px}
+.dates h2{font-size:clamp(48px,9vw,120px);margin-bottom:28px}
+.gig{display:grid;grid-template-columns:auto 1fr auto;gap:8px 28px;align-items:center;border-top:3px solid var(--ink);padding-block:18px;text-decoration:none}
+.gig:last-of-type{border-bottom:3px solid var(--ink)}
+.gig .d{font-family:var(--display);font-size:clamp(44px,7vw,88px);line-height:.9}
+.gig .c{font-family:var(--display);text-transform:uppercase;font-size:clamp(28px,4.4vw,56px);line-height:.95}
+.gig .v{font-weight:500;font-size:15px}
+.gig .go{font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:13px;background:var(--ink);color:var(--paper);padding:13px 20px}
+.gig:hover .go{background:var(--yellow);color:var(--ink)}
+@media (max-width:620px){.gig{grid-template-columns:auto 1fr}.gig .go{grid-column:1/-1;text-align:center}}
+.dates small{display:block;margin-top:18px;font-size:14px;font-weight:500}
+
+/* about */
+.about{background:var(--paper);color:var(--ink);padding-block:80px}
+.about .in{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:start}
+.about .in>*{min-width:0}
+.about h2{font-size:clamp(44px,6.4vw,92px);text-wrap:balance}
+.about h2 em{font-style:normal;color:var(--pink)}
+.about p{margin:0 0 16px;max-width:54ch;font-size:17px}
+.nums{display:flex;flex-wrap:wrap;gap:12px 40px;margin-top:28px;border-top:3px solid var(--ink);padding-top:18px}
+.nums div{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.nums b{display:block;font-family:var(--display);font-weight:400;font-size:54px;line-height:1;letter-spacing:0}
+
+/* gallery */
+.shots{padding-block:72px 80px}
+.shots h2{font-size:clamp(48px,9vw,120px)}
+.shots .head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+.wall{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;grid-auto-flow:dense}
+@media (min-width:720px){.wall{grid-template-columns:repeat(4,1fr)}}
+@media (min-width:1100px){.wall{grid-template-columns:repeat(5,1fr)}}
+.wall button{position:relative;border:0;padding:0;background:#241320;cursor:zoom-in;aspect-ratio:4/5;overflow:hidden;color:var(--paper);font:inherit}
+.wall button.big{grid-column:span 2;grid-row:span 2}
+.wall img{width:100%;height:100%;object-fit:cover}
+.wall span{position:absolute;left:0;bottom:0;background:var(--ink);padding:4px 9px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+@media (prefers-reduced-motion:no-preference){.wall img{transition:transform .35s ease}.wall button:hover img{transform:scale(1.05)}}
+dialog{border:0;padding:0;background:transparent;max-width:min(94vw,820px);max-height:94vh}
+dialog::backdrop{background:rgba(20,8,16,.92)}
+dialog img{max-height:86vh;width:auto;margin-inline:auto}
+dialog form{display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--paper);padding-top:10px}
+dialog button{background:var(--yellow);color:var(--ink);border:0;font:700 13px var(--body);letter-spacing:.14em;text-transform:uppercase;padding:10px 16px;cursor:pointer}
+
+/* dj */
+.dj{background:var(--ink);padding-bottom:80px}
+.dj .in{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;align-items:center}
+.dj .in>*{min-width:0}
+.dj img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.dj h2{font-size:clamp(56px,9vw,128px)}
+.dj h2 em{font-style:normal;color:var(--pink)}
+.dj p{max-width:48ch;font-size:17px;color:var(--dim);margin:20px 0 0}
+
+/* bookings */
+.book{background:var(--yellow);color:var(--ink);padding-block:80px}
+.book h2{font-size:clamp(52px,10vw,150px);max-width:11ch}
+.book .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;margin-top:36px}
+.book .cols>*{min-width:0}
+.book p{margin:0 0 14px;font-size:17px;max-width:50ch}
+.book ul{list-style:none;margin:0;padding:0;border-top:3px solid var(--ink)}
+.book li{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--ink);padding:10px 0;font-weight:500}
+.book li b{font-weight:700}
+.btn{display:inline-block;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:13px;padding:15px 24px;margin-top:10px}
+.btn:hover{background:var(--pink);color:var(--ink)}
+
+footer{padding-block:36px 44px;font-size:14px;color:var(--dim)}
+footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+</style>
+
+<header class="hero">
+  <div class="screens" aria-hidden="true">
+    <video src="assets/dj.mp4" poster="assets/dj-poster.jpg" muted loop playsinline autoplay preload="auto"></video>
+    <video src="assets/dj.mp4" poster="assets/dj-poster.jpg" muted loop playsinline preload="none" data-at="6.5"></video>
+    <video src="assets/dj.mp4" poster="assets/dj-poster.jpg" muted loop playsinline preload="none" data-at="13"></video>
+  </div>
+  <nav class="nav in" aria-label="Main">
+    <b>Madness <i>Latino</i></b>
+    <ul class="label">
+      <li><a href="#dates">Dates</a></li>
+      <li><a href="#nights">Nights</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#bookings">Bookings</a></li>
+    </ul>
+  </nav>
+  <div class="hero-body in">
+    <div>
+      <h1 class="disp"><span>Madness</span><span class="l2">Latino</span></h1>
+      <p class="tag">Reggaeton. Perreo. Madness.<br>Prepárate pa’ la locura.</p>
+    </div>
+    <a class="sticker" href="#dates">
+      <span class="label">Next up</span>
+      <span class="disp">21.11 Haugesund<br>28.11 Trondheim</span>
+    </a>
+  </div>
+</header>
+
+<div class="strip" aria-hidden="true"><div>
+  <span>Trondheim</span>✦<span>Oslo</span>✦<span>Ålesund</span>✦<span>Haugesund</span>✦<span>Stavanger</span>✦<span>Trondheim</span>✦<span>Oslo</span>✦<span>Ålesund</span>✦<span>Haugesund</span>✦<span>Stavanger</span>✦<span>Trondheim</span>✦<span>Oslo</span>✦<span>Ålesund</span>✦<span>Haugesund</span>✦<span>Stavanger</span>✦<span>Trondheim</span>✦<span>Oslo</span>✦<span>Ålesund</span>✦<span>Haugesund</span>✦<span>Stavanger</span>✦
+</div></div>
+
+<section class="dates" id="dates">
+  <div class="in">
+    <h2 class="disp">Next nights</h2>
+    <a class="gig" href="https://tickets.dynamite-duet-events.no/no/ku8bkdjjkn98hrd/products">
+      <span class="d">21.11</span>
+      <span><span class="c">Haugesund</span><br><span class="v">Byscenen · Doors 23:00 · ID 20+</span></span>
+      <span class="go">Tickets</span>
+    </a>
+    <a class="gig" href="https://www.instagram.com/dynamite_duet_events/">
+      <span class="d">28.11</span>
+      <span><span class="c">Trondheim</span><br><span class="v">Radisson Blu Royal Garden · Doors 23:00 · ID 20+</span></span>
+      <span class="go">Tickets</span>
+    </a>
+    <small>We sell out. Buy online and skip the queue.</small>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="in">
+    <h2 class="disp">Si el latino es tu idioma, <em>esta es tu casa.</em></h2>
+    <div>
+      <p>Madness Latino is a reggaeton night that started in Trondheim in December 2023. One DJ, one room, and a crowd that came for perreo and stayed until the lights went on.</p>
+      <p>Since then it has moved into Hjorten Scene at the Radisson Blu Royal Garden and gone on the road: Oslo, Ålesund, Haugesund and Stavanger. Numbered volumes through the year, plus San Valentine, the Summer Party and Halloween Madness.</p>
+      <div class="nums">
+        <div><b>2023</b>First night</div>
+        <div><b>5</b>Cities</div>
+        <div><b>20+</b>Age limit</div>
+        <div><b>23:00</b>Doors</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shots" id="nights">
+  <div class="in">
+    <div class="head">
+      <h2 class="disp">The nights</h2>
+      <span class="label">Tap a photo to open it</span>
+    </div>
+    <div class="wall" id="wall"></div>
+  </div>
+</section>
+
+<section class="dj">
+  <div class="in">
+    <img src="assets/p01.jpg" alt="DJ Tricky Ricky from behind the decks, facing a full room under blue and purple light" loading="lazy">
+    <div>
+      <span class="label">Behind the decks</span>
+      <h2 class="disp">DJ Tricky <em>Ricky</em></h2>
+      <p>Ricky is from Venice, and he did not stay put. He travelled the world: some years in Australia, time in Prague, time in Peru. Every stop added records to the bag and another way to read a room.</p>
+      <p>Now he is behind the decks at Madness Latino, playing reggaeton, dembow and Latin hits to the crowd in front of him.</p>
+      <p class="label" style="color:var(--yellow)">Venice · Australia · Prague · Peru · Trondheim</p>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="bookings">
+  <div class="in">
+    <h2 class="disp">Bring the madness to your city</h2>
+    <div class="cols">
+      <div>
+        <p>We bring the DJ, the concept and the crowd. You bring the room. Madness Latino has played hotel stages, nightclubs and concert venues across Norway.</p>
+        <p>Venues, festivals and brand partners: get in touch.</p>
+        <a class="btn" href="https://www.instagram.com/dynamite_duet_events/">Message us on Instagram</a>
+      </div>
+      <ul>
+        <li><b>Trondheim</b><span>Hjorten Scene, Radisson Blu Royal Garden</span></li>
+        <li><b>Oslo</b><span>Youngs · Labyrinth</span></li>
+        <li><b>Ålesund</b><span>Dampsentralen</span></li>
+        <li><b>Haugesund</b><span>Byscenen</span></li>
+        <li><b>Stavanger</b><span>Fiskepiren</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="in">
+    <span>© 2026 Madness Latino · Trondheim, Norway</span>
+    <span>ID 20+ · <a href="https://www.instagram.com/dynamite_duet_events/">Instagram</a></span>
+  </div>
+</footer>
+
+<dialog id="lb" aria-label="Photo">
+  <img id="lbi" alt="">
+  <form method="dialog"><span class="label" id="lbc"></span><button>Close</button></form>
+</dialog>
+
+<script>
+const P=[
+ ["p00.jpg","Oslo","Mar 2025","DJ with arms raised over a packed room in purple light",1],
+ ["p08.jpg","Ålesund","Mar 2026","Dance floor under a disco ball"],
+ ["p05.jpg","Haugesund","May 2025","Two friends posing under stage lights"],
+ ["p13.jpg","Trondheim","Mar 2025","Guest dancing with arms in the air"],
+ ["p03.jpg","Haugesund","May 2025","Guest dancing in blue stage light"],
+ ["p15.jpg","Trondheim","Sep 2024","DJ in a yellow jersey with fists raised",1],
+ ["p06.jpg","Haugesund","May 2025","Group of friends smiling at the camera"],
+ ["p02.jpg","Oslo","Mar 2025","Dancer silhouetted against purple lights"],
+ ["p16.jpg","Ålesund","Feb 2025","Full dance floor seen from above"],
+ ["p04.jpg","Haugesund","May 2025","Portrait of a guest in pink light"],
+ ["p09.jpg","Ålesund","Mar 2026","Crowd in red light"],
+ ["p14.jpg","Trondheim","Jan 2025","DJ at the decks in a Pirates jersey"],
+ ["p18.jpg","Trondheim","Jan 2025","Group of friends on the dance floor"],
+ ["p07.jpg","Haugesund","May 2025","Three friends in front of the light rig"],
+ ["p19.jpg","Trondheim","Jul 2024","DJ with arms open wide"],
+ ["p17.jpg","Ålesund","Feb 2025","Friends posing on the dance floor"],
+ ["p20.jpg","Trondheim","Oct 2024","Guest dancing in blue light"],
+ ["p12.jpg","Oslo","Mar 2025","Crowd under purple lights"]
+];
+const wall=document.getElementById('wall'),lb=document.getElementById('lb');
+for(const [f,c,d,alt,big] of P){
+  const b=document.createElement('button');if(big)b.className='big';
+  const i=document.createElement('img');i.src='assets/'+f;i.alt=alt;i.loading='lazy';
+  const s=document.createElement('span');s.textContent=c+' · '+d;
+  b.append(i,s);
+  b.onclick=()=>{document.getElementById('lbi').src=i.src;document.getElementById('lbi').alt=alt;document.getElementById('lbc').textContent=c+' · '+d;lb.showModal()};
+  wall.append(b);
+}
+lb.addEventListener('click',e=>{if(e.target===lb)lb.close()});
+// side screens start at different moments, only on wide layouts
+const wide=matchMedia('(min-width:820px)');
+function screens(){document.querySelectorAll('.screens video[data-at]').forEach(v=>{if(wide.matches){v.addEventListener('loadedmetadata',()=>{v.currentTime=+v.dataset.at},{once:true});v.play().catch(()=>{})}else v.pause()})}
+screens();wide.addEventListener('change',screens);
+if(matchMedia('(prefers-reduced-motion:reduce)').matches)document.querySelectorAll('.screens video').forEach(v=>{v.removeAttribute('autoplay');v.pause()});
+</script>
+<!--/PAGE-->
+</body>
+</html>
